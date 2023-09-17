@@ -28,11 +28,9 @@ router.post("/signup", async (req, res) => {
 
   // Put the data in our newUser variable
   let newUser = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
     username: req.body.username,
     password: req.body.password,
-    habit_list: []
+    type: req.body.type
   };
 
   // Connect to the "users" database

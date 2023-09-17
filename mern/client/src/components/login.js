@@ -7,6 +7,7 @@ const login = () => {
     const [form, setForm] = useState({
         username: "",
         password: "",
+        type: "" // type of user: either host or server (only differing permissions will be host set init table value, server clear list end of night / free program)
     });
     const navigate = useNavigate();
 
@@ -42,34 +43,35 @@ const login = () => {
         {            
             setForm({username: "", password: ""});
             navigate("/home");
+            localStorage.setItem("token", "VALID-TOKEN") // place-holder token to tackle authentication at later time
         }   
     }
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div style={{backgroundImage: "url('https://popmenucloud.com/okpgdebt/5fd232d4-c0a6-4d17-b236-b8c9c83471e3.jpg')", height: "100vh", width:"100vw"}}>
+            <h1 style={{fontFamily:"Courier New", backgroundColor:"white", textAlign:"center"}}>Login</h1>
             <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <label htmlFor="username">Username</label>
+                <div className="form-group" style={{margin:"20px"}}>
                     <input
                     type="text"
                     className="form-control"
                     id="username"
                     value={form.username}
+                    placeholder="username..."
                     onChange={(e) => updateForm({username: e.target.value})}
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                <div className="form-group" style={{margin:"20px"}}>
                     <input
                     type="text"
                     className="form-control"
                     id="password"
                     value={form.password}
+                    placeholder="password..."
                     onChange={(e) => updateForm({password: e.target.value})}
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{ textAlign: "center", margin: "20px", fontFamily:"Courier New"}}>
                     <button type="button" onClick={() => onSubmit(form)}>Submit</button>
                 </div>
             </form>

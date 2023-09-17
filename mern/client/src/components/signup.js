@@ -6,10 +6,9 @@ const signup = () => {
 
     // Creates 2 consts, form and setform which use the useState library
     const [form, setForm] = useState({
-        firstname: "",
-        lastname: "",
         username: "",
         password: "",
+        type: ""
     });
     const navigate = useNavigate();
 
@@ -25,7 +24,7 @@ const signup = () => {
         const newSignup = { ...form };
         
         // Checks that the info is filled out
-        if(newSignup.firstname === "" || newSignup.lastname === ""  || newSignup.username === "" || newSignup.password === "" )
+        if(newSignup.username === "" || newSignup.password === "" || newSignup.type === "" )
         {
             alert("Please enter missing information!");
             
@@ -46,7 +45,7 @@ const signup = () => {
 
             if(result.status === 200)
             {       
-                setForm({username: "", firstname: "", lastname: "", password: ""});
+                setForm({username: "", password: "", type: ""});
                 navigate("/login");
             }
             else
@@ -57,50 +56,44 @@ const signup = () => {
         }
     }
     return(
-        <div>
-            <h1>Signup</h1>
+
+        <div style={{backgroundImage: "url('https://popmenucloud.com/okpgdebt/5fd232d4-c0a6-4d17-b236-b8c9c83471e3.jpg')", height: "100vh", width:"100vw"}}>
+            <h1 style={{fontFamily:"Courier New", backgroundColor:"white", textAlign:"center"}}>Signup</h1>
             <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <label htmlFor="firstname">First Name</label>
-                    <input
-                    type="text"
-                    className="form-control"
-                    id="firstname"
-                    value={form.firstname}
-                    onChange={(e) => updateForm({firstname: e.target.value})}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="lastname">Last Name</label>
-                    <input
-                    type="text"
-                    className="form-control"
-                    id="lastname"
-                    value={form.lastname}
-                    onChange={(e) => updateForm({lastname: e.target.value})}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="username">Username</label>
+                <div className="form-group" style={{margin:"20px"}}>
+                    {/* <label htmlFor="username">Username</label> */}
                     <input
                     type="text"
                     className="form-control"
                     id="username"
                     value={form.username}
                     onChange={(e) => updateForm({username: e.target.value})}
+                    placeholder="enter username..."
                     />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
+                <div className="form-group" style={{margin:"20px"}}>
+                    {/* <label htmlFor="username">Username</label> */}
                     <input
                     type="text"
                     className="form-control"
                     id="password"
                     value={form.password}
                     onChange={(e) => updateForm({password: e.target.value})}
+                    placeholder="enter password..."
                     />
                 </div>
-                <div className="form-group">
+                <div className="form-group" style={{margin:"20px"}}>
+                    {/* <label htmlFor="username">Username</label> */}
+                    <input
+                    type="text"
+                    className="form-control"
+                    id="type"
+                    value={form.type}
+                    onChange={(e) => updateForm({type: e.target.value})}
+                    placeholder="enter position: host / server ..."
+                    />
+                </div>
+                <div className="form-group" style={{ textAlign: "center", margin: "20px", fontFamily:"Courier New"}}>
                     <button type="button" onClick={() => onSubmit(form)}>Submit</button>
                 </div>
             </form>
